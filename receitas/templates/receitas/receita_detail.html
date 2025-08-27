@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ receita.title }} - Minhas Receitas</title> {# Título dinâmico #}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="bg-gray-900 text-white p-6 shadow-lg rounded-b-lg">
+        <div class="container mx-auto flex flex-col sm:flex-row items-center justify-center">
+
+            <div class="flex items-center mb-4 sm:mb-0">
+                <div class="text-4xl mr-4">
+                    <i class="fas fa-utensils"></i>
+
+                </div>
+
+                <h1 class="text-4xl font-bold text-center sm:text-left">
+                    Minhas Receitas Deliciosas
+                </h1>
+            </div>
+            <nav class="mt-4 sm:mt-0">
+
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 mt-8 bg-white rounded-lg shadow-md">
+        <div class="flex flex-col md:flex-row gap-8">
+            {# Imagem da Receita #}
+            {% if receita.image %}
+
+            <div class="md:w-1/2">
+                <img src="{{ receita.image.url }}" alt="{{ receita.title }}" class="w-full h-auto rounded-lg shadow-md">
+
+            </div>
+
+            {% endif %}
+
+            {# Detalhes da Receita #}
+            <div class="md:w-1/2">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">{{ receita.title }}</h2>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">Descrição:</h3>
+                <p class="text-gray-700 mb-6 leading-relaxed">{{ receita.description }}</p>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">Ingredientes:</h3>
+                <p class="text-gray-700 mb-6 leading-relaxed whitespace-pre-wap">{{ receita.ingredients }}</p>
+                {# whitespace-pre-wap para quebras de linha #}
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">Instruções:</h3>
+                <p class="text-gray-700 mb-6 leading-relaxed whitespace-pre-wap">{{ receita.instructions }}</p>
+                {# whitespace-pre-wap para quebras de linha #}
+
+            </div>
+        </div>
+        <div class="mt-8 text-center">
+            <a href="{% url 'home' %}"
+                class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out shadow-lg">
+
+                &larr; Voltar para a Home
+            </a>
+        </div>
+    </main>
+</body>
+
+<footer class="mt-12 p-6 text-center text-gray-600">
+    <p>&copy; 2025 Minhas Receitas. Todos os direitos reservados a Gabriel.</p>
+</footer>
+
+</html>
