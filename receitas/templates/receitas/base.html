@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} - Minhas Receitas {% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style> 
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-gray-900 text-white p-6 shadow-lg rounded-b-lg">
+        <div class="container mx-auto relative flex items-center justify-between">
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="flex items-center">
+                    <div class="text-4xl mr-4">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h1 class="text-3xl font-bold">Minhas receitas Deliciosas</h1>
+                </div>
+            </div>
+
+            <nav class="relative z-10">
+                <a href="{% url 'home' %}" class="text-gray-300 hover:text-white mx-2">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="conteiner mx-auto p-6 mt-8 bg-white rounded-lg shadow-md">
+        {% block content %}
+        <h2 class="text-2xl font-bold mb-6">Receitas de sobremesas</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition">
+                <img src="{% static 'images/sobremesa1.jpg' %}" alt="Sobremesa 1" class="rounded-lg mb-4">
+                <h3 class="text-lg font-semibold">Bolo de Chocolate</h3>
+                </div>
+            </div>
+        {% endblock %}
+    </main>
+
+    <footer class="mt-12 p-6 text-center text-gray-600">
+        &copy; 2025 Minhas Receitas. Todos os direitos reservados.
+    </footer>
