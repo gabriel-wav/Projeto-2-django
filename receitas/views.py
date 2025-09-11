@@ -27,7 +27,7 @@ def pesquisar_receitas(request):
             Q(ingredients__icontains=query)
         )
     
-    return render(request, 'receitas/resultados.html', {
+    return render(request, 'receitas/pesquisar_receitas.html', {
         'resultados': resultados,
         'query': query
     })
