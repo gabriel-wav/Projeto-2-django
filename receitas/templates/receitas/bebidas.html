@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Resultados da Pesquisa - Minhas Fotos{% endblock %}
+
+{% block content %}
+<main class="container mx-auto p-6 mt-8 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold mb-6 text-center">
+        {% if resultados %}
+            Encontramos {{ resultados|length }} resultado(s) para "{{ query }}"
+        {% else %}
+            Nenhum resultado encontrado para "{{ query }}"
+        {% endif %}
+    </h2>
+
+    <div class="flex flex-wrap justify-center gap-6">
+        {% if resultados %}
+            {% for foto in resultados %}
+                <div class="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                    <img src="{{ foto.image.url }}" 
+                         alt="Imagem de {{ foto.title }}" 
+                         class="w-full h-48 object-cover rounded-md mb-4"
+                         loading="lazy">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">{{ foto.title }}</h3>
+                    <p class="text-gray-600 mb-4">{{ foto.description|truncatewords:20 }}</p>
+                    <a href="{% url 'foto_detail' id=foto.id %}" 
+                       class="text-blue-400 hover:text-blue-600 font-semibold">
+                        Ver Foto &rarr;
+                    </a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center text-gray-600">Tente uma busca diferente ou <a href="{% url 'home' %}" class="text-blue-400 hover:text-blue-600 font-semibold">volte para a home</a>.</p>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

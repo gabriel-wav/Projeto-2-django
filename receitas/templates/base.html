@@ -21,12 +21,14 @@
                     <div class="text-4xl mr-4">
                         <i class="fas fa-utensils"></i>
                     </div>
-                    <h1 class="text-3xl font-bold">Minhas receitas Deliciosas</h1>
+                    <h1 class="text-3xl font-bold">Minhas Receitas</h1>
                 </div>
             </div>
 
             <nav class="relative z-10">
                 <a href="{% url 'home' %}" class="text-gray-300 hover:text-white mx-2">Home</a>
+                <a href="{% url 'sobre' %}" class="text-gray-300 hover:text-white mx-2">Sobre Nós</a>
+                <a href="{% url 'contato' %}" class="text-gray-300 hover:text-white mx-2">Contato</a>
             </nav>
         </div>
     </header>
@@ -46,3 +48,5 @@
     <footer class="mt-12 p-6 text-center text-gray-600">
         &copy; 2025 Minhas Receitas. Todos os direitos reservados.
     </footer>
+</body>
+</html>

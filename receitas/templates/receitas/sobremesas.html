@@ -1,0 +1,14 @@
+      { % extends "base.html" % }
+{ % block title % }Comidas - minhas receitas{ % endblock % }
+
+{ % block content % }
+      <h2 class="text-2xl font-bold mb-6">Receitas de sobremesas</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition">
+                <img src="{% static 'images/sobremesa1.jpg' %}" alt="Sobremesa 1" class="rounded-lg mb-4">
+                <h3 class="text-lg font-semibold">Bolo de Chocolate</h3>
+                <p class="text-gray-600">Sobremesa clássica e irresistível</p>
+                </div>
+            </div>
+            
+        {% endblock %}

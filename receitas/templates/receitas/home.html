@@ -16,69 +16,38 @@ rounded-r-full transition duration-300 ease-in-out flex items-center justify-cen
     </form>
 </section>
 
+<div class="container mx-auto p-6 mt-4 text-center">
+    <a href="{% url 'home' %}" class="inline-block px-4 py-2 m-1 rounded-full font-semibold
+        {% if not categoria_selecionada %}bg-orange-500 text-white{% else %}bg-gray-200 text-gray-700 hover:bg-orange-400 hover:text-white{% endif %}">
+        Todas
+    </a>
+    {% for valor, nome in categorias %}
+    <a href="?category={{ valor }}" class="inline-block px-4 py-2 m-1 rounded-full font-semibold
+        {% if categoria_selecionada == valor %}bg-orange-500 text-white{% else %}bg-gray-200 text-gray-700 hover:bg-orange-400 hover:text-white{% endif %}">
+        {{ nome }}
+    </a>
+    {% endfor %}
+</div>
+
+
 <div class="container mx-auto p-6 mt-8 bg-white rounded-lg shadow-md">
     <h2 class="text-2xl font-semibold mb-6 text-center">Nossas Últimas Receitas</h2>
 
     <div class="flex flex-wrap justify-center gap-6">
+        {% for receita in receitas %}
         <div class="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
-            <img src="{% static 'receitas/img/bolo_abacaxi.jpg' %}" alt="Bolo de Abacaxi"
+            {% if receita.image %}
+            <img src="{{ receita.image.url }}" alt="{{ receita.title }}"
                 class="w-full h-48 object-cover rounded-md mb-4">
-            <h3 class="text-xl font-bold mb-2 text-gray-800">Receita de Bolo de Abacaxi</h3>
-            <p class="text-gray-600 mb-4">Um bolo clássico, úmido e delicioso, perfeito para qualquer ocasião.</p>
-            <a href="{% url 'receita_detail' id=1 %}"
+            {% endif %}
+            <h3 class="text-xl font-bold mb-2 text-gray-800">{{ receita.title }}</h3>
+            <p class="text-gray-600 mb-4">{{ receita.description|truncatewords:20 }}</p>
+            <a href="{% url 'receita_detail' id=receita.id %}"
                 class="text-orange-600 hover:text-orange-800 font-semibold">Ver Receita &rarr;</a>
         </div>
-
-        <div class="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
-            <img src="{% static 'receitas/img/frango_assado.jpg' %}" alt="Frango Assado"
-                class="w-full h-48 object-cover rounded-md mb-4">
-            <h3 class="text-xl font-bold mb-2 text-gray-800">Frango Assado</h3>
-            <p class="text-gray-600 mb-4">Uma receita simples e saborosa de frango assado com um toque de ervas frescas.</p>
-            <a href="{% url 'receita_detail' id=2 %}"
-                class="text-orange-600 hover:text-orange-800 font-semibold">Ver Receita &rarr;</a>
-        </div>
-
-        <div class="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
-            <img src="{% static 'receitas/img/salada_maionese.jpg' %}" alt="Salada de Maionese"
-                class="w-full h-48 object-cover rounded-md mb-4">
-            <h3 class="text-xl font-bold mb-2 text-gray-800">Salada de Maionese</h3>
-            <p class="text-gray-600 mb-4">Uma salada deliciosa e refrescante, cheia de sabor.</p>
-            <a href="{% url 'receita_detail' id=3 %}"
-                class="text-orange-600 hover:text-orange-800 font-semibold">Ver Receita &rarr;</a>
-        </div>
-
-        <div class="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
-            <img src="{% static 'receitas/img/torta-de-morango.jpg' %}" alt="Torta de Morango"
-                class="w-full h-48 object-cover rounded-md mb-4">
-            <h3 class="text-xl font-bold mb-2 text-gray-800">Torta de Morango</h3>
-            <p class="text-gray-600 mb-4">Uma torta clássica com recheio de morango doce e azedinho.</p>
-            <a href="{% url 'receita_detail' id=4 %}"
-                class="text-orange-600 hover:text-orange-800 font-semibold">Ver Receita &rarr;</a>
-        </div>
-
-        <div class="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
-            <img src="{% static 'receitas/img/sopa-de-frango-com-legumes.jpg' %}" alt="Sopa de Legumes"
-                class="w-full h-48 object-cover rounded-md mb-4">
-            <h3 class="text-xl font-bold mb-2 text-gray-800">Sopa de Legumes</h3>
-            <p class="text-gray-600 mb-4">Uma sopa reconfortante e cheia de pedaços de vegetais frescos, perfeita para dias frios.</p>
-            <a href="{% url 'receita_detail' id=5 %}"
-                class="text-orange-600 hover:text-orange-800 font-semibold">Ver Receita &rarr;</a>
-        </div>
-
-        <div class="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
-            <img src="{% static 'receitas/img/pizza_champignon.jpg' %}" alt="Pizza de Cogumelos"
-                class="w-full h-48 object-cover rounded-md mb-4">
-            <h3 class="text-xl font-bold mb-2 text-gray-800">Pizza de Cogumelos Selvagens</h3>
-            <p class="text-gray-600 mb-4">Uma pizza cremosa e exótica, com uma mistura rica de cogumelos selvagens.</p>
-            <a href="{% url 'receita_detail' id=6 %}"
-                class="text-orange-600 hover:text-orange-800 font-semibold">Ver Receita &rarr;</a>
-        </div>
+        {% empty %}
+        <p class="text-center text-gray-500">Nenhuma receita encontrada nesta categoria.</p>
+        {% endfor %}
     </div>
-</div>
-
-<div class="container mx-auto p-6 mt-8 bg-white rounded-lg shadow-md">
-    <h2 class="text-2xl font-semibold mb-4">Bem-vindo à sua página de receitas!</h2>
-    <p class="text-lg text-gray-700">Aqui você poderá organizar e compartilhar suas receitas favoritas.</p>
-    <p class="mt-4 text-gray-600">Este é o início da sua jornada culinária com Django.</p>
 </div>
 {% endblock %}
